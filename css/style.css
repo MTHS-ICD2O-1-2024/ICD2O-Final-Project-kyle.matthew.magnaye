@@ -11,6 +11,14 @@ body {
   padding: 0;
 }
 
+.mdl-layout-title {
+  color: #e53935 !important;
+  /* Add this block */
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
 .mdl-layout__content {
   padding-left: 15pt;
   padding-right: 15pt;

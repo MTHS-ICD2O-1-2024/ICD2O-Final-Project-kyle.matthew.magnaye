@@ -13,6 +13,7 @@ body {
 
 .mdl-layout-title {
   color: #e53935 !important;
+
   /* Add this block */
   font-size: 2rem;
   font-weight: bold;

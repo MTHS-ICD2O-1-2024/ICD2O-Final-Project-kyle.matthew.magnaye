@@ -44,14 +44,14 @@ document.addEventListener('DOMContentLoaded', function () {
   })
 
   function updateDisplay (totalSeconds) {
-    const d = Math.floor(totalSeconds / (24 * 60 * 60))
-    const h = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60))
-    const m = Math.floor((totalSeconds % (60 * 60)) / 60)
-    const s = totalSeconds % 60
+    const days = Math.floor(totalSeconds / (24 * 60 * 60))
+    const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60))
+    const minutes = Math.floor((totalSeconds % (60 * 60)) / 60)
+    const seconds = totalSeconds % 60
     display.textContent =
-      String(d).padStart(2, '0') + ':' +
-      String(h).padStart(2, '0') + ':' +
-      String(m).padStart(2, '0') + ':' +
-      String(s).padStart(2, '0')
+      String(days).padStart(2, '0') + ':' +
+      String(hours).padStart(2, '0') + ':' +
+      String(minutes).padStart(2, '0') + ':' +
+      String(seconds).padStart(2, '0')
   }
 })

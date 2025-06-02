@@ -1,110 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!--  Metadata and page setup - -->
-    <meta charset="utf-8" />
-    <meta name="description" content="The Countdown Timer" />
-    <meta name="keywords" content="mths, icd2o" />
-    <meta name="author" content="Kyle Matthew" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!--  External Stylesheets and Fonts - -->
-    <link rel="stylesheet" href="./css/style.css" />
-    <!--  Custom styles - -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
-    <!--  Material Icons - -->
-    <link
-      rel="stylesheet"
-      href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"
-    />
-    <!--  MDL theme - -->
+<head>
+  <!-- Metadata and page setup -->
+  <meta charset="utf-8" />
+  <meta name="description" content="The Countdown Timer" />
+  <meta name="keywords" content="mths, icd2o" />
+  <meta name="author" content="Kyle Matthew" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!--  Favicon setup for different devices - -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="./favicon-16x16.png"
-    />
-    <link rel="manifest" href="site.webmanifest" />
+  <!-- External Stylesheets and Fonts -->
+  <link rel="stylesheet" href="./css/style.css" />
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <!-- Material Icons -->
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />
+  <!-- MDL theme -->
 
-    <!--  Page title - -->
-    <title>The Countdown Timer</title>
-  </head>
+  <!-- Favicon setup for different devices -->
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
+  <link rel="manifest" href="site.webmanifest" />
 
-  <body>
-    <!--  JavaScript files loaded after HTML content (deferred) - -->
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <!--  MDL script - -->
-    <script defer src="./js/script.js"></script>
-    <!--  Custom script - -->
+  <!-- Page title -->
+  <title>The Countdown Timer</title>
+</head>
 
-    <!--  Main layout using MDL classes - -->
+<body>
+  <!-- JavaScript files loaded after HTML content (deferred) -->
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <!-- MDL script -->
+  <script defer src="./js/script.js"></script>
+  <!-- Custom script -->
 
-    <div class="mdl-layout mdl-js-layout mdl-layout-fixed-header">
-      <header class="mdl-layout-header">
-        <div class="mdl-layout-header-row">
-          <span class="mdl-layout-title">The Countdown Timer</span>
+  <!-- Main layout using MDL classes -->
+
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">The Countdown Timer</span>
+      </div>
+    </header>
+
+    <!-- Main content area -->
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <!-- Right-side image for visual decoration -->
+        <div class="right-image">
+          <img src="./assets/images/pngtree-orange-stop-watch-timer-vector-png-image_7117936.png" alt="Timer image" />
         </div>
-      </header>
 
-      <!--  Main content area - -->
-      <main class="mdl-layout-content">
-        <div class="page-content">
-          <!--  Right-side image for visual decoration - -->
-          <div class="right-image">
-            <img
-              src="./assets/images/pngtree-orange-stop-watch-timer-vector-png-image_7117936.png"
-              alt="Timer image"
-            />
-          </div>
+        <!-- Countdown timer form and display -->
+        <div class="container">
+          <h1>Countdown Timer</h1>
 
-          <!--  Countdown timer form and display - -->
-          <div class="container">
-            <h1>Countdown Timer</h1>
+          <!-- Timer input form -->
+          <form id="timer-form">
+            <label>
+              Days:
+              <input type="number" id="days" min="0" value="0" />
+            </label>
+            <label>
+              Hours:
+              <input type="number" id="hours" min="0" max="23" value="0" />
+            </label>
+            <label>
+              Minutes:
+              <input type="number" id="minutes" min="0" max="59" value="0" />
+            </label>
+            <label>
+              Seconds:
+              <input type="number" id="seconds" min="0" max="59" value="0" />
+            </label>
+            <br><button type="submit">Start Countdown</button><br>
+          </form>
 
-            <!--  Timer input form - -->
-            <form id="timer-form">
-              <label>
-                Days:
-                <input type="number" id="days" min="0" value="0" />
-              </label>
-              <label>
-                Hours:
-                <input type="number" id="hours" min="0" max="23" value="0" />
-              </label>
-              <label>
-                Minutes:
-                <input type="number" id="minutes" min="0" max="59" value="0" />
-              </label>
-              <label>
-                Seconds:
-                <input type="number" id="seconds" min="0" max="59" value="0" />
-              </label>
-              <br /><button type="submit">START THE COUNTDOWN</button><br />
-            </form>
+          <!-- Display area for live countdown -->
+          <div id="timer-display">00:00:00:00</div>
 
-            <!--  Display area for live countdown - -->
-            <div id="timer-display">00:00:00:00</div>
-
-            <!--  Audio that plays at the end of countdown - -->
-            <audio id="final-countdown-audio" src="Europe-The-Final-Countdown-v4 (1).mp3"></audio>
-          </div>
-
-          <!--  Optional additional JavaScript - -->
-          <script src="main.js"></script>
+          <!-- Audio that plays at the end of countdown -->
+          <audio id="timer-sound" src="./audio/Europe-The-Final-Countdown-v4.mp3"></audio>
         </div>
-      </main>
-    </div>
-  </body>
+
+        <!-- Optional additional JavaScript -->
+        <script src="main.js"></script>
+      </div>
+    </main>
+  </div>
+</body>
+
 </html>

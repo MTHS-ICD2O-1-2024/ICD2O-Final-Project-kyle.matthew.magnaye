@@ -3,40 +3,83 @@
 * This file contains the CSS for index.html
 */
 body {
-  background: lightblue;
-}
-
-.mdl-layout__header-row {
-  justify-content: center;
+  background: #f5f5fa;
+  font-family: Arial, sans-serif;
+  margin: 0;
   padding: 0;
 }
 
-.mdl-layout-title {
-  color: #e53935 !important;
+.container {
+  background: #fff;
+  margin: 40px auto;
+  padding: 32px 24px;
+  max-width: 360px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px #bbb8;
+  text-align: center;
+}
 
-  /* Add this block */
-  font-size: 2rem;
+h1 {
+  margin-bottom: 24px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input[type="number"] {
+  width: 60px;
+  padding: 4px;
+  font-size: 1em;
+}
+
+button {
+  padding: 8px 0;
+  font-size: 1em;
+  background: #4a90e2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #357ab7;
+}
+
+#display {
+  font-size: 2em;
   font-weight: bold;
-  letter-spacing: 2px;
+  letter-spacing: 0.2em;
+  background: #222;
+  color: #fff;
+  padding: 18px 0;
+  border-radius: 8px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.mdl-layout__content {
-  padding-left: 15pt;
-  padding-right: 15pt;
-  padding-top: 15pt;
+.mdl-layout__header-row {
+  display: flex;
+  justify-content: center;
+  /* Still centered, but can offset */
+  transform: translateX(-20px);
+  /* Change 40px to any value, positive or negative */
+  padding: 0;
 }
 
-.mdl-textfield__error {
-  color: lightgreen;
-}
-
-.page-content {
-  color: rgb(186, 34, 34);
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 1.25rem;
-}
-
-img {
-  float: right;
-  height: 200px;
+img.force-center {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  float: none !important;
 }

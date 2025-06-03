@@ -5,7 +5,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('timer-form')
   const display = document.getElementById('timer-display')
-  const audio = document.getElementById('final-countdown-audio')
+  const audio = document.getElementById('timer-sound')
   let timerInterval
 
   form.addEventListener('submit', function (event) {
@@ -23,6 +23,12 @@ document.addEventListener('DOMContentLoaded', function () {
       hours * 60 * 60 +
       minutes * 60 +
       seconds
+
+    // Prevent countdown if all values are zero
+    if (totalSeconds === 0) {
+      alert('Please enter a time greater than zero.')
+      return
+    }
 
     // Clear previous timer if active
     clearInterval(timerInterval)

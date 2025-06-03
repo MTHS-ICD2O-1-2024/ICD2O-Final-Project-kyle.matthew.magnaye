@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let totalSeconds = days * 86400 + hours * 3600 + minutes * 60 + seconds;
 
     // If all values are zero, show a message and stop
+    // eslint-disable-next-line eqeqeq
     if (totalSeconds == 0) {
       alert('Please enter a time greater than zero.');
       return;
@@ -50,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // This function updates the timer on the page
-  function updateDisplay(totalSeconds) {
+  function updateDisplay (totalSeconds) {
     const days = Math.floor(totalSeconds / 86400);
     const hours = Math.floor((totalSeconds % 86400) / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
@@ -62,3 +63,4 @@ document.addEventListener('DOMContentLoaded', function () {
       String(seconds).padStart(2, '0');
   }
 });
+

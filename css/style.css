@@ -69,8 +69,10 @@ button:hover {
 .mdl-layout__header-row {
   display: flex;
   justify-content: center;
+
   /* Still centered, but can offset */
   transform: translateX(-20px);
+
   /* Change 40px to any value, positive or negative */
   padding: 0;
 }

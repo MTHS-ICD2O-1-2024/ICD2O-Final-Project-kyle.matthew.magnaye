@@ -2,6 +2,7 @@
 * Created on: Jun 2025
 * This file contains the CSS for index.html
 */
+
 body {
   background: #f5f5fa;
   font-family: Arial, sans-serif;
@@ -71,8 +72,10 @@ button:hover {
 .mdl-layout__header-row {
   display: flex;
   justify-content: center;
+
   /* Still centered, but can offset */
   transform: translateX(-20px);
+
   /* Change 40px to any value, positive or negative */
   padding: 0;
 }

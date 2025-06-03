@@ -3,61 +3,62 @@
 // This script enables the countdown timer functionality.
 
 document.addEventListener('DOMContentLoaded', function () {
-  const form = document.getElementById('timer-form')
-  const display = document.getElementById('timer-display')
-  const audio = document.getElementById('timer-sound')
-  let timerInterval
+  // Get form and elements
+  const form = document.getElementById('timer-form');
+  const display = document.getElementById('timer-display');
+  const audio = document.getElementById('timer-sound');
+  let timerInterval; // Used to keep track of the countdown
 
+  // When the form is submitted
   form.addEventListener('submit', function (event) {
-    event.preventDefault()
+    event.preventDefault(); // Stop the page from reloading
 
-    // Get user input values
-    const days = parseInt(document.getElementById('days').value, 10) || 0
-    const hours = parseInt(document.getElementById('hours').value, 10) || 0
-    const minutes = parseInt(document.getElementById('minutes').value, 10) || 0
-    const seconds = parseInt(document.getElementById('seconds').value, 10) || 0
+    // Read values from the input fields and convert to numbers
+    const days = parseInt(document.getElementById('days').value, 10) || 0;
+    const hours = parseInt(document.getElementById('hours').value, 10) || 0;
+    const minutes = parseInt(document.getElementById('minutes').value, 10) || 0;
+    const seconds = parseInt(document.getElementById('seconds').value, 10) || 0;
 
-    // Calculate total seconds
-    let totalSeconds =
-      days * 24 * 60 * 60 +
-      hours * 60 * 60 +
-      minutes * 60 +
-      seconds
+    // Add up total seconds
+    let totalSeconds = days * 86400 + hours * 3600 + minutes * 60 + seconds;
 
-    // Prevent countdown if all values are zero
-    if (totalSeconds === 0) {
-      alert('Please enter a time greater than zero.')
-      return
+    // If all values are zero, show a message and stop
+    if (totalSeconds == 0) {
+      alert('Please enter a time greater than zero.');
+      return;
     }
 
-    // Clear previous timer if active
-    clearInterval(timerInterval)
+    // Stop any previous countdown
+    clearInterval(timerInterval);
 
-    updateDisplay(totalSeconds)
+    // Show the starting time
+    updateDisplay(totalSeconds);
 
+    // Start the countdown: every 1 second, subtract one, update display
     timerInterval = setInterval(function () {
-      totalSeconds--
+      totalSeconds--;
       if (totalSeconds <= 0) {
-        clearInterval(timerInterval)
-        updateDisplay(0)
+        clearInterval(timerInterval); // Stop timer
+        updateDisplay(0); // Show zeros
         if (audio) {
-          audio.play()
+          audio.play(); // Play sound if exists
         }
       } else {
-        updateDisplay(totalSeconds)
+        updateDisplay(totalSeconds);
       }
-    }, 1000)
-  })
+    }, 1000);
+  });
 
-  function updateDisplay (totalSeconds) {
-    const days = Math.floor(totalSeconds / (24 * 60 * 60))
-    const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60))
-    const minutes = Math.floor((totalSeconds % (60 * 60)) / 60)
-    const seconds = totalSeconds % 60
+  // This function updates the timer on the page
+  function updateDisplay(totalSeconds) {
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
     display.textContent =
       String(days).padStart(2, '0') + ':' +
       String(hours).padStart(2, '0') + ':' +
       String(minutes).padStart(2, '0') + ':' +
-      String(seconds).padStart(2, '0')
+      String(seconds).padStart(2, '0');
   }
-})
+});

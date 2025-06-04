@@ -12,9 +12,9 @@ body {
 
 .container {
   background: #fff;
-  margin: 40px auto;
-  padding: 32px 24px;
-  max-width: 360px;
+  margin: 60px auto;
+  padding: 30px 20px;
+  max-width: 300px;
   border-radius: 10px;
   box-shadow: 0 4px 20px #bbb8;
   text-align: center;
@@ -40,7 +40,6 @@ label {
 input[type="number"] {
   width: 60px;
   padding: 4px;
-  font-size: 1em;
 }
 
 button {
@@ -57,7 +56,7 @@ button:hover {
   background: #357ab7;
 }
 
-#display {
+#timer-display {
   font-size: 2em;
   font-weight: bold;
   letter-spacing: 0.2em;
@@ -65,8 +64,6 @@ button:hover {
   color: #fff;
   padding: 18px 0;
   border-radius: 8px;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 .mdl-layout__header-row {

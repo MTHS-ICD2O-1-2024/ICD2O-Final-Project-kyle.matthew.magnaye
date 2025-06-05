@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
         fwCtx.fillStyle = p.color
         fwCtx.globalAlpha = p.alpha
         fwCtx.fill()
-        // Update
+        // Updated
         p.trail.unshift([p.x, p.y])
         if (p.trail.length > 8) p.trail.pop()
         p.x += p.vx

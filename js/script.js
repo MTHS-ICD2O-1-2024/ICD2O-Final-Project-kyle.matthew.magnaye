@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const seconds = parseInt(document.getElementById('seconds').value, 10) || 0
     let totalSeconds = days * 86400 + hours * 3600 + minutes * 60 + seconds
 
-    if (totalSeconds == 0) {
+    if (totalSeconds === 0) {
       alert('Please enter a time greater than zero.')
       return
     }

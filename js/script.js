@@ -1,6 +1,6 @@
 // Created by: Kyle Matthew Magnaye
 // Created on: Jun 2025
-// This script enables the countdown timer functionality with a fireworks effect and plays the firework sound ONCE after the song ends.
+// This script enables the countdown timer functionality with a fireworks effect that bursts 45 times after the song ends.
 
 document.addEventListener('DOMContentLoaded', function () {
   // Get form and elements
@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const seconds = parseInt(document.getElementById('seconds').value, 10) || 0
     let totalSeconds = days * 86400 + hours * 3600 + minutes * 60 + seconds
 
-    // Check if the user entered zero for the countdown time.
     if (totalSeconds == 0) {
       alert('Please enter a time greater than zero.')
       return
@@ -58,12 +57,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (audio) {
           audio.currentTime = 0
           audio.play()
-          // Show fireworks and play the sound ONCE when song ends
+          // Start fireworks when song ends
           audio.onended = function () {
-            startFireworkShow(45, true)
+            startFireworkShow(45)
           }
         } else {
-          startFireworkShow(45, true)
+          startFireworkShow(45)
         }
       } else {
         updateDisplay(totalSeconds)
@@ -83,28 +82,22 @@ document.addEventListener('DOMContentLoaded', function () {
       String(seconds).padStart(2, '0')
   }
 
-  // --- Firework Show (45 bursts after song ends, plays firework sound once) ---
-  function startFireworkShow(bursts, playSoundOnce) {
+  // --- Firework Show (45 bursts after song ends) ---
+  function startFireworkShow (bursts) {
     fwCanvas.width = window.innerWidth
     fwCanvas.height = window.innerHeight
     fwCanvas.style.display = 'block'
     let particles = []
     let burstCount = 0
-    let burstInterval = 120 // ms between bursts
+    const burstInterval = 120 // ms between bursts
 
-    // Play fireworks sound effect ONCE if requested
-    if (playSoundOnce && fireworkAudio) {
-      fireworkAudio.currentTime = 0
-      fireworkAudio.play()
-    }
-
-    function launchBurst() {
+    function launchBurst () {
       const burstX = Math.random() * fwCanvas.width * 0.7 + fwCanvas.width * 0.15
       const burstY = Math.random() * fwCanvas.height * 0.5 + fwCanvas.height * 0.15
       const color = `hsl(${Math.random() * 360},100%,60%)`
       for (let i = 0; i < 36; i++) {
-        let angle = (i / 36) * 2 * Math.PI
-        let speed = 3 + Math.random() * 2
+        const angle = (i / 36) * 2 * Math.PI
+        const speed = 3 + Math.random() * 2
         particles.push({
           x: burstX,
           y: burstY,
@@ -117,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
-    let burstTimer = setInterval(() => {
+    const burstTimer = setInterval(() => {
       launchBurst()
       burstCount++
       if (burstCount >= bursts) clearInterval(burstTimer)
@@ -125,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     animateFireworks()
 
-    function animateFireworks() {
+    function animateFireworks () {
       fwCtx.globalCompositeOperation = 'destination-out'
       fwCtx.fillStyle = 'rgba(0,0,0,0.20)'
       fwCtx.fillRect(0, 0, fwCanvas.width, fwCanvas.height)
@@ -136,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (p.trail.length > 1) {
           fwCtx.beginPath()
           fwCtx.moveTo(p.trail[0][0], p.trail[0][1])
-          for (let pt of p.trail) fwCtx.lineTo(pt[0], pt[1])
+          for (const pt of p.trail) fwCtx.lineTo(pt[0], pt[1])
           fwCtx.strokeStyle = p.color
           fwCtx.globalAlpha = 0.35
           fwCtx.lineWidth = 2

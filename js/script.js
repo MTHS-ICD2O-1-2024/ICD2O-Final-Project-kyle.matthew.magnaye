@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
   fwCanvas.style.display = 'none'
   document.body.appendChild(fwCanvas)
   const fwCtx = fwCanvas.getContext('2d')
+  let fireworksActive = false // Prevent overlapping shows
 
   // --- Timer Logic ---
   form.addEventListener('submit', function (event) {
@@ -49,6 +50,11 @@ document.addEventListener('DOMContentLoaded', function () {
     clearInterval(timerInterval)
     updateDisplay(totalSeconds)
 
+    // Remove previous onended event to avoid stacking
+    if (audio) {
+      audio.onended = null
+    }
+
     timerInterval = setInterval(function () {
       totalSeconds--
       if (totalSeconds <= 0) {
@@ -59,10 +65,10 @@ document.addEventListener('DOMContentLoaded', function () {
           audio.play()
           // Start fireworks when song ends
           audio.onended = function () {
-            startFireworkShow(45)
+            if (!fireworksActive) startFireworkShow(45)
           }
         } else {
-          startFireworkShow(45)
+          if (!fireworksActive) startFireworkShow(45)
         }
       } else {
         updateDisplay(totalSeconds)
@@ -84,16 +90,34 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // --- Firework Show (45 bursts after song ends) ---
   function startFireworkShow (bursts) {
-    fwCanvas.width = window.innerWidth
-    fwCanvas.height = window.innerHeight
+    fireworksActive = true
+
+    // HiDPI support
+    function resizeCanvas () {
+      const dpr = window.devicePixelRatio || 1
+      fwCanvas.width = window.innerWidth * dpr
+      fwCanvas.height = window.innerHeight * dpr
+      fwCanvas.style.width = window.innerWidth + 'px'
+      fwCanvas.style.height = window.innerHeight + 'px'
+      fwCtx.setTransform(1, 0, 0, 1, 0, 0)
+      fwCtx.scale(dpr, dpr)
+    }
+    resizeCanvas()
     fwCanvas.style.display = 'block'
+    window.addEventListener('resize', resizeCanvas)
+
     let particles = []
     let burstCount = 0
     const burstInterval = 120 // ms between bursts
 
     function launchBurst () {
-      const burstX = Math.random() * fwCanvas.width * 0.7 + fwCanvas.width * 0.15
-      const burstY = Math.random() * fwCanvas.height * 0.5 + fwCanvas.height * 0.15
+      // Play firework sound for each burst
+      if (fireworkAudio) {
+        fireworkAudio.currentTime = 0
+        fireworkAudio.play()
+      }
+      const burstX = Math.random() * fwCanvas.width / (window.devicePixelRatio || 1) * 0.7 + fwCanvas.width / (window.devicePixelRatio || 1) * 0.15
+      const burstY = Math.random() * fwCanvas.height / (window.devicePixelRatio || 1) * 0.5 + fwCanvas.height / (window.devicePixelRatio || 1) * 0.15
       const color = `hsl(${Math.random() * 360},100%,60%)`
       for (let i = 0; i < 36; i++) {
         const angle = (i / 36) * 2 * Math.PI
@@ -158,6 +182,8 @@ document.addEventListener('DOMContentLoaded', function () {
         requestAnimationFrame(animateFireworks)
       } else {
         fwCanvas.style.display = 'none'
+        fireworksActive = false
+        window.removeEventListener('resize', resizeCanvas)
         fwCtx.globalCompositeOperation = 'source-over'
       }
     }

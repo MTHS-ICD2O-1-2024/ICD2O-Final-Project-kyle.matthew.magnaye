@@ -106,16 +106,18 @@ document.addEventListener('DOMContentLoaded', function () {
     fwCanvas.style.display = 'block'
     window.addEventListener('resize', resizeCanvas)
 
+    // Play firework sound ONCE at the start of the show
+    if (fireworkAudio) {
+      fireworkAudio.currentTime = 0
+      fireworkAudio.play()
+    }
+
     let particles = []
     let burstCount = 0
     const burstInterval = 120 // ms between bursts
 
     function launchBurst () {
-      // Play firework sound for each burst
-      if (fireworkAudio) {
-        fireworkAudio.currentTime = 0
-        fireworkAudio.play()
-      }
+      // Only visual, no sound here
       const burstX = Math.random() * fwCanvas.width / (window.devicePixelRatio || 1) * 0.7 + fwCanvas.width / (window.devicePixelRatio || 1) * 0.15
       const burstY = Math.random() * fwCanvas.height / (window.devicePixelRatio || 1) * 0.5 + fwCanvas.height / (window.devicePixelRatio || 1) * 0.15
       const color = `hsl(${Math.random() * 360},100%,60%)`
